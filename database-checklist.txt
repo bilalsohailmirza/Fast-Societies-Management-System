@@ -1,0 +1,71 @@
+
+------------ Societies ------------
+
+1. PROCOM
+2. ACM-NUCES
+3. DECS
+4. TLC
+5. TnC
+6. FDSS
+7. MLSA
+
+
+----------- Events ----------------
+
+PROCOM ---> (i think competitions here will make more sense, we can insert procom as event as well)
+
+ACM-NUCES ---> { Coder's Cup, Developers Day, }
+
+DECS ---> { Picnic, Spotlight, }
+
+TLC ---> 
+
+TnC ---> { The Grand Debate }
+
+FDSS ---> { Data Verse ,}
+
+
+
+--------------- Competitions -----------
+
+
+--------- PROCOM ------- 
+
+
+
+
+
+----- ACM-NUCES ------
+
+Coders's Cup : (here we can divide the competition in batches ughh or maybe not)
+
+
+Developers Day : (look at the list of previous developers day)
+
+
+
+---------- DECS ----------
+
+Picinc 
+
+Spotlight
+
+
+-------- TLC ---------
+
+
+
+
+
+-------- TnC ---------
+
+
+
+
+
+-------- FDSS --------
+
+
+
+
+ 

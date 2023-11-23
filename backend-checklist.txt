@@ -1,0 +1,23 @@
+
+---------- PACKAGES and TOOLS -----------
+
+1. express
+2. nodemon
+3. cors
+4. dotenv
+5. pg
+6. morgan(optional)
+
+
+
+
+------------ ROUTES -----------
+
+-------- GET routes -------
+
+/societies
+/societies/:id
+/events
+/events/:id
+
+
