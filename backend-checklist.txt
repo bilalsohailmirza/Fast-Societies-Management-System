@@ -19,5 +19,11 @@
 /societies/:id
 /events
 /events/:id
+/competitions
+/competitions/:id
 
 
+-------- POST routes ------
+
+/event-participants
+/competition-participants

@@ -5,7 +5,7 @@
 2. ACM-NUCES
 3. DECS
 4. TLC
-5. TnC
+5. CBS
 6. FDSS
 7. MLSA
 
@@ -18,12 +18,13 @@ ACM-NUCES ---> { Coder's Cup, Developers Day, }
 
 DECS ---> { Picnic, Spotlight, }
 
-TLC ---> 
+TLC ---> {The Grand Debate, AHA Declamation Contest}
 
-TnC ---> { The Grand Debate }
+CBS ---> {Orphans Day Out, YouthClub Session}
 
-FDSS ---> { Data Verse ,}
+FDSS ---> { Data Verse, Data Quest}
 
+MLSA ---> {Building Cloud Native Apps, }
 
 
 --------------- Competitions -----------
@@ -53,13 +54,14 @@ Spotlight
 
 -------- TLC ---------
 
+AHA DEclamation Contest
+The Grand Debate
 
 
 
+-------- CBS ---------
 
--------- TnC ---------
-
-
+Youtu CLub Sessoin
 
 
 
@@ -69,3 +71,4 @@ Spotlight
 
 
  
+----------- MLSA -----------
