@@ -9,9 +9,8 @@ CREATE TABLE IF NOT EXISTS public."TeamMember"
     "Name" character varying,
     "Phone" integer,
     "Cgpa" double precision,
-    "TeamId" character varying,
     "Position" character varying,
-    PRIMARY KEY ("RollNumber", "TeamId")
+    PRIMARY KEY ("RollNumber")
 );
 
 CREATE TABLE IF NOT EXISTS public."Team"
@@ -48,21 +47,25 @@ CREATE TABLE IF NOT EXISTS public."Competition"
 CREATE TABLE IF NOT EXISTS public."CompetitionParticipant"
 (
     "ParticipantId" character varying,
-    "CompetitionId" character varying,
     "ParticipantName" character varying,
     "ParticipantPhone" integer,
-    PRIMARY KEY ("ParticipantId", "CompetitionId")
+    PRIMARY KEY ("ParticipantId")
 );
 
 CREATE TABLE IF NOT EXISTS public."EventParticipant"
 (
     "P_Id" character varying,
-    "EventId" character varying,
     "ParticipantName" character varying,
     "Participation Fee" integer,
     "EventDate" date,
     "ParticipantPhone" integer,
     PRIMARY KEY ("P_Id")
+);
+
+CREATE TABLE IF NOT EXISTS public."Event_EventParticipant"
+(
+    "Event_EventId" character varying,
+    "EventParticipant_P_Id" character varying
 );
 
 CREATE TABLE IF NOT EXISTS public."TeamMember_Team"
@@ -71,16 +74,10 @@ CREATE TABLE IF NOT EXISTS public."TeamMember_Team"
     "Team_TeamId" character varying
 );
 
-CREATE TABLE IF NOT EXISTS public."CompetitionParticipant_competition"
+CREATE TABLE IF NOT EXISTS public."CompetitionParticipant_Competition"
 (
     "CompetitionParticipant_ParticipantId" character varying,
-    "competition_CompetitionId" character varying
-);
-
-CREATE TABLE IF NOT EXISTS public."Event_EventParticipant"
-(
-    "Event_EventId" character varying,
-    "EventParticipant_P_Id" character varying
+    "Competition_CompetitionId" character varying
 );
 
 ALTER TABLE IF EXISTS public."Team"
@@ -107,6 +104,22 @@ ALTER TABLE IF EXISTS public."Competition"
     NOT VALID;
 
 
+ALTER TABLE IF EXISTS public."Event_EventParticipant"
+    ADD FOREIGN KEY ("Event_EventId")
+    REFERENCES public."Event" ("EventId") MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public."Event_EventParticipant"
+    ADD FOREIGN KEY ("EventParticipant_P_Id")
+    REFERENCES public."EventParticipant" ("P_Id") MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
 ALTER TABLE IF EXISTS public."TeamMember_Team"
     ADD FOREIGN KEY ("TeamMember_RollNumber")
     REFERENCES public."TeamMember" ("RollNumber") MATCH SIMPLE
@@ -123,7 +136,7 @@ ALTER TABLE IF EXISTS public."TeamMember_Team"
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public."CompetitionParticipant_competition"
+ALTER TABLE IF EXISTS public."CompetitionParticipant_Competition"
     ADD FOREIGN KEY ("CompetitionParticipant_ParticipantId")
     REFERENCES public."CompetitionParticipant" ("ParticipantId") MATCH SIMPLE
     ON UPDATE NO ACTION
@@ -131,25 +144,9 @@ ALTER TABLE IF EXISTS public."CompetitionParticipant_competition"
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public."CompetitionParticipant_competition"
-    ADD FOREIGN KEY ("competition_CompetitionId")
+ALTER TABLE IF EXISTS public."CompetitionParticipant_Competition"
+    ADD FOREIGN KEY ("Competition_CompetitionId")
     REFERENCES public."Competition" ("CompetitionId") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public."Event_EventParticipant"
-    ADD FOREIGN KEY ("Event_EventId")
-    REFERENCES public."Event" ("EventId") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public."Event_EventParticipant"
-    ADD FOREIGN KEY ("EventParticipant_P_Id")
-    REFERENCES public."EventParticipant" ("P_Id") MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
