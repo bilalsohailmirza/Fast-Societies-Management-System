@@ -3,4 +3,5 @@ have to write sql
 	- think of all the checks 
 	- see how to add transactions and triggers just for the sake of it
 	- maybe even try writing rest api and all the sql commands inside
-	- 
+	- fsms is the final sql file
+	- phone number in member table needs a changing of data type
