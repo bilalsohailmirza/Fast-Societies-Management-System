@@ -1,1 +1,6 @@
-just observing how branching works
+have to write sql 
+	- write 8 insertions
+	- think of all the checks 
+	- see how to add transactions and triggers just for the sake of it
+	- maybe even try writing rest api and all the sql commands inside
+	- 
