@@ -13,17 +13,56 @@
 
 ------------ ROUTES -----------
 
--------- GET routes -------
-
-/societies
-/societies/:id
-/events
-/events/:id
-/competitions
-/competitions/:id
 
 
--------- POST routes ------
+---- Socities ---
 
-/event-participants
-/competition-participants
+get all
+get one
+
+put one
+
+
+---- Teams -----
+get all
+get one
+put one
+
+
+----- Events ----
+get all
+get one 
+put one
+post one
+delete one
+
+
+------ Competitions -----
+get all
+get one
+put one
+post one
+delete one
+
+------ Team Memebrs ---
+get all
+get one
+put one
+post one
+delete one
+
+
+------ Event Participants ------
+get all
+get one
+put one
+post one
+delete one
+
+------ Competition Participants -------
+get all 
+get one
+put one 
+post one
+delete one
+
