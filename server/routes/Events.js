@@ -7,15 +7,16 @@ const cors = require('cors')
 const db = require('../db');
 router.use(express.json())
 
-router.get("/", async (req, res) => {
+// Get All Events
+router.get("/:sId/events", async (req, res) => {
 
     try {
-
-        // console.log(req)
+        
+        console.log(req.params.sid)
         const results = await db.query(
-            "SELECT * FROM \"Event\""
+            "SELECT * FROM \"Event\" WHERE \"SocietyId\" = $1",[req.params.sId]
             );
-        console.log(results);
+        // console.log(results);
         
         res.status(200).json({
             status: "success",
@@ -31,13 +32,13 @@ router.get("/", async (req, res) => {
 
 });
 
-// Get a Single Society 
-router.get("/:id" , async (req, res) => {
+// Get a Single Event
+router.get("/:sId/events/:eId" , async (req, res) => {
     // console.log(req.params.id);
     try {
 
         const results = await db.query(
-            "SELECT * FROM \"Event\" WHERE \"TeamId\" = $1" ,[req.params.id] 
+            "SELECT * FROM \"Event\" WHERE \"EventId\" = $1" ,[req.params.eId] 
             );
         console.log(results.rows[0]);
 
@@ -55,13 +56,15 @@ router.get("/:id" , async (req, res) => {
         }
 });
 
-router.post("/", async (req, res) => {
-    // console.log(req.body)
+// Create an Event
+router.post("/:sId/events/", async (req, res) => {
 
     try {
+
         console.log(req.body)
         const results = await db.query(
-            "INSERT INTO \"Society\" (\"SocietyId\", \"SocietyName\") VALUES ($1, $2) returning *", [req.body.SocietyId, req.body.SocietyName,]
+            "INSERT INTO \"Event\" (\"EventId\", \"EventName\", \"SocietyId\", \"EventFee\", \"EventDate\", \"EventLogo\", \"EventDescription\") VALUES ($1, $2, $3, $4, $5, $6, $7) returning *", 
+            [req.body.eventId, req.body.eventName, req.params.sId, req.body.evetFee, req.body.eventDate, req.body.eventLogo, req.body.eventDesc,]
             );
 
             console.log(results)
@@ -78,13 +81,14 @@ router.post("/", async (req, res) => {
         }
 })
 
-router.delete("/:id", async (req, res) => {
+// Delete an Event
+router.delete("/:sId/events/:eId", async (req, res) => {
 
     try {
 
         const results = await db.query(
-            "DELETE FROM \"Society\" WHERE \"SocietyId\" = $1",
-            [req.params.id]
+            "DELETE FROM \"Event\" WHERE \"EventId\" = $1",
+            [req.params.eId]
         )
         res.status(204).json(
             {
@@ -99,14 +103,16 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
-router.put("/:id", async (req, res) => {
+// Update an Event
+router.put("/:sId/events/:eId", async (req, res) => {
     
     try {
+        console.log(req.body)
         const results = await db.query(
-            "UPDATE \"Society\" SET \"SocietyId\" = $1, \"SocietyName\" = $2 WHERE \"SocietyId\" = $3 returning *",
-            [req.body.SocietyId, req.body.SocietyName, req.params.id]
+            "UPDATE \"Event\" SET \"EventName\" = $2, \"SocietyId\" = $3, \"EventFee\" = $4, \"EventDate\" = $5, \"EventLogo\" = $6, \"EventDescription\" = $7 WHERE \"EventId\" = $1 RETURNING *;",
+            [req.params.eId, req.body.eventName, req.params.sId, req.body.eventFee, req.body.eventDate, req.body.eventLogo, req.body.eventDesc,]
         )
-        console.log(results)
+        // console.log(results)
         res.status(200).json(
             {
                 status: "success",

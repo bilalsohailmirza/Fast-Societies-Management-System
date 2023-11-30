@@ -10,6 +10,9 @@ const db = require('./db');
 const societyRouter = require('./routes/Societies')
 app.use('/api/v1/societies', societyRouter);
 
+const eventRouter = require('./routes/Events')
+app.use('/api/v1/societies/', eventRouter);
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
