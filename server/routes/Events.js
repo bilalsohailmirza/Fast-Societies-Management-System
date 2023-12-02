@@ -61,7 +61,7 @@ router.post("/:sId/events/", async (req, res) => {
 
     try {
 
-        console.log(req.body)
+        // console.log(req.body)
         const results = await db.query(
             "INSERT INTO \"Event\" (\"EventId\", \"EventName\", \"SocietyId\", \"EventFee\", \"EventDate\", \"EventLogo\", \"EventDescription\") VALUES ($1, $2, $3, $4, $5, $6, $7) returning *", 
             [req.body.eventId, req.body.eventName, req.params.sId, req.body.evetFee, req.body.eventDate, req.body.eventLogo, req.body.eventDesc,]
