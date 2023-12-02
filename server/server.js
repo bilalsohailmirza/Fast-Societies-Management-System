@@ -28,6 +28,9 @@ app.use('/api/v1/events', competitionRouter);
 const eventParticipantRouter = require('./routes/EventAttendee')
 app.use('/api/v1/events', eventParticipantRouter);
 
+const competitionParticipantRouter = require('./routes/CompetitionParticipants')
+app.use('/api/v1/events', competitionParticipantRouter);
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
