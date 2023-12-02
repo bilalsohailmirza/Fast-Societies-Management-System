@@ -7,6 +7,9 @@ const cors = require('cors')
 const app = express();
 const db = require('./db');
 
+
+// --------- ROUTES ------------ //
+
 const societyRouter = require('./routes/Societies')
 app.use('/api/v1/societies', societyRouter);
 
@@ -19,6 +22,9 @@ app.use('/api/v1/societies/', teamRouter);
 const teamMemberRouter = require('./routes/TeamMembers')
 app.use('/api/v1/teams', teamMemberRouter);
 
+const competitionRouter = require('./routes/Competitions')
+app.use('/api/v1/events', competitionRouter);
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
@@ -28,8 +34,3 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors())
 
-
-
-// ------------------------- ROUTES ------------------- //
-
-// get all societies

@@ -36,7 +36,7 @@ router.get("/:tId/members", async (req, res) => {
 router.get("/:tId/members/:mId" , async (req, res) => {
     
     // adding hypen to member id because hyphen cannot be parsed in http request parameters
-    req.params.mId = req.params.mId.substring(0, 3) + '-' + req.params.mId.substring(3, req.params.mId.length);
+    // req.params.mId = req.params.mId.substring(0, 3) + '-' + req.params.mId.substring(3, req.params.mId.length);
 
     try {
         console.log(req.params.mId);
@@ -61,74 +61,74 @@ router.get("/:tId/members/:mId" , async (req, res) => {
 });
 
 // Create a Memeber of a Team
-router.post(":tId/members/", async (req, res) => {
+// router.post(":tId/members/", async (req, res) => {
 
-    try {
-
-        // console.log(req.params.id)
-        const results = await db.query( 
-            "INSERT INTO \"Team\" (\"TeamId\", \"SocietyId\", \"TeamName\") VALUES ($1, $2, $3) RETURNING *", 
-            [req.body.teamId, req.params.sId, req.body.teamName]
-            );
-
-            // console.log(results)
-        res.status(201).json(
-            {
-                status: "success",
-                data: {
-                    restaurant: results.rows[0],
-                },
-            }
-        );
-    }   catch(err) {
-            console.log(err);
-        }
-})
-
-// Delete a Team
-router.delete("/:sId/teams/:tId", async (req, res) => {
-
-    try {
-
-        const results = await db.query(
-            "DELETE FROM \"Team\" WHERE \"TeamId\" = $1 AND \"SocietyId\" = $2",
-            [req.params.tId, req.params.sId]
-        )
-        res.status(204).json(
-            {
-                status: "success"
-            }
-        )
-        console.log("Deleted Successfully!")
-
-    }   catch(err) {
-
-        console.log(err)
-    }
-})
-
-// Update a Team
-// router.put("/:sId/events/:eId", async (req, res) => {
-    
 //     try {
-//         // console.log(req.body)
 
+//         // console.log(req.params.id)
 //         const results = await db.query( 
-//             "UPDATE \"Team\" SET \"SocietyId\" = $1, \"TeamName\" = $2 RETURNING *", 
+//             "INSERT INTO \"Team\" (\"TeamId\", \"SocietyId\", \"TeamName\") VALUES ($1, $2, $3) RETURNING *", 
 //             [req.body.teamId, req.params.sId, req.body.teamName]
 //             );
-//         // console.log(results)
-//         res.status(200).json(
+
+//             // console.log(results)
+//         res.status(201).json(
 //             {
 //                 status: "success",
 //                 data: {
 //                     restaurant: results.rows[0],
 //                 },
 //             }
-//             );
+//         );
 //     }   catch(err) {
+//             console.log(err);
+//         }
+// })
+
+// // Delete a Team
+// router.delete("/:sId/teams/:tId", async (req, res) => {
+
+//     try {
+
+//         const results = await db.query(
+//             "DELETE FROM \"Team\" WHERE \"TeamId\" = $1 AND \"SocietyId\" = $2",
+//             [req.params.tId, req.params.sId]
+//         )
+//         res.status(204).json(
+//             {
+//                 status: "success"
+//             }
+//         )
+//         console.log("Deleted Successfully!")
+
+//     }   catch(err) {
+
 //         console.log(err)
 //     }
-// });
+// })
+
+// // Update a Team
+// // router.put("/:sId/events/:eId", async (req, res) => {
+    
+// //     try {
+// //         // console.log(req.body)
+
+// //         const results = await db.query( 
+// //             "UPDATE \"Team\" SET \"SocietyId\" = $1, \"TeamName\" = $2 RETURNING *", 
+// //             [req.body.teamId, req.params.sId, req.body.teamName]
+// //             );
+// //         // console.log(results)
+// //         res.status(200).json(
+// //             {
+// //                 status: "success",
+// //                 data: {
+// //                     restaurant: results.rows[0],
+// //                 },
+// //             }
+// //             );
+// //     }   catch(err) {
+// //         console.log(err)
+// //     }
+// // });
 
 module.exports = router;
