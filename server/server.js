@@ -16,6 +16,9 @@ app.use('/api/v1/societies/', eventRouter);
 const teamRouter = require('./routes/Teams')
 app.use('/api/v1/societies/', teamRouter);
 
+const teamMemberRouter = require('./routes/TeamMembers')
+app.use('/api/v1/teams', teamMemberRouter);
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
