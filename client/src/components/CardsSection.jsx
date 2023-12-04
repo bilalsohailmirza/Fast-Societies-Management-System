@@ -2,37 +2,42 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MainCard from "./MainCard";
 
 const CardsSection = (props) => {
-    const cardValues = [
-        {
-            id: 1,
-            title: 'Procom',
-            image: '../src/assets/home/procom-logo.jpeg'
-        },
+    const cardValues = props.values
+    // console.log(cardValues)
+       
 
-        {
-            id: 2,
-            title: 'ACM',
-            image: '../src/assets/home/procom-logo.jpeg'
-        },
+    const cardComponents = cardValues.map((card) => {
+        if(props.heading === 'Societies' ) {
 
-        {
-            id: 3,
-            title: 'TLC',
-            image: '../src/assets/home/procom-logo.jpeg'
-        },
+            if(card.id === 'Procom' || card.id === 'Cbs' || card.id === 'Tlc' || card.id === 'Fdss') {
+                
+                return (
+                    <MainCard 
+                        key={card.id} 
+                        title={card.name} 
+                        image={'../src/assets/home/procom-logo.jpeg'}
+                        nature = {props.heading.toLowerCase()}
+                    /> 
 
-        {
-            id: 4,
-            title: 'GDSC',
-            image: '../src/assets/home/procom-logo.jpeg'
-        },
-    ] 
+                )   
+            }
+        }
+        else if (props.heading === 'Events'){
+            return(
+                <MainCard 
+                    key={card.id} 
+                    title={card.name} 
+                    image={'../src/assets/home/procom-logo.jpeg'}
+                    nature = {props.heading.toLowerCase()}
+                /> 
+                )   
+                
+        } 
+    }
+        
+    )
 
-    const cardComponents = cardValues.map(card => (
-        <MainCard key={card.id} title={card.title} image={card.image} />
-    ))
-
-    return (
+    return ( 
 
         <div className="container mt-4 d-flex flex-column align-items-center">
 

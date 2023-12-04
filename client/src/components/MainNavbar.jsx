@@ -16,7 +16,7 @@ const MainNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
 
           <Nav variant="dark" className="nav-links fs-5 fw-bold">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
 
             <NavDropdown title="Societies" id="basic-nav-dropdown">
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">

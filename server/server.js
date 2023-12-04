@@ -7,7 +7,7 @@ const cors = require('cors')
 const app = express();
 const db = require('./db');
 
-
+app.use(cors())
 // --------- ROUTES ------------ //
 
 const societyRouter = require('./routes/Societies')
@@ -30,6 +30,9 @@ app.use('/api/v1/events', eventParticipantRouter);
 
 const competitionParticipantRouter = require('./routes/CompetitionParticipants')
 app.use('/api/v1/events', competitionParticipantRouter);
+
+const featuredRouter = require('./routes/FeaturedStuff')
+app.use('/api/v1/featured', featuredRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {
