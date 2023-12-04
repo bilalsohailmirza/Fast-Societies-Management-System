@@ -1,0 +1,15 @@
+.navbar {
+    color: azure;
+}
+.nav-logo {
+    display: flex;
+    align-content: left;
+}
+.nav-links {
+    color: #fff;
+    margin-left: 70%;
+}
+
+.drop-link:hover {
+    background-color: #fef;
+}

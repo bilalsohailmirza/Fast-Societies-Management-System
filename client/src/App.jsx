@@ -1,13 +1,22 @@
+// import { React } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { SocietyContextProvider } from './context/AllContexts';
+// import MainNavbar from './components/MainNavbar';
+// import HomeCarousel from './components/HomeCarousel'
+// import CardsSection from './components/CardsSection';
 
-import './App.css'
+import Home from './pages/Home';
 
-function App() {
-  
-
+const App = () => {
   return (
     <>
-    <h1>THIS IS FSMS</h1>
+
+    <SocietyContextProvider>
+     <Home />
+    </SocietyContextProvider>
+    
     </>
+        
   )
 }
 
