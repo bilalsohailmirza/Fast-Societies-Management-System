@@ -72,26 +72,52 @@ router.post("/:eId/competitions/:cId/participants", async (req, res) => {
  
     try {
         const res1 = await client.query('BEGIN')
-        const results = await client.query(
-            "INSERT INTO \"CompetitionParticipant\" (\"ParticipantId\", \"ParticipantName\", \"ParticipantPhone\", \"ParticipantEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
-            [req.body.participantId, req.body.participantName, req.body.participantPhone, req.body.participantEmail]
-            );
-        
-        const results2 = await client.query(
-            "INSERT INTO \"CompetitionParticipant_Competition\" (\"CompetitionParticipant_ParticipantId\", \"Competition_CompetitionId\") VALUES ($1, $2) RETURNING *", [req.body.participantId, req.params.cId]
+
+        const boolRes = client.query(
+            "SELECT check_event_participant_exists($1, $2);",
+            [req.body.attendeePhone, req.body.attendeeEmail]
         )
-        const result3 = await client.query('COMMIT')
+        if(!boolRes) {
 
-        if(results && results2){
+            const results = await client.query(
+                "INSERT INTO \"CompetitionParticipant\" (\"ParticipantId\", \"ParticipantName\", \"ParticipantPhone\", \"ParticipantEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
+                [req.body.participantId, req.body.participantName, req.body.participantPhone, req.body.participantEmail]
+                );
+                
+            const results2 = await client.query(
+                "INSERT INTO \"CompetitionParticipant_Competition\" (\"CompetitionParticipant_ParticipantId\", \"Competition_CompetitionId\") VALUES ($1, $2) RETURNING *", [req.body.participantId, req.params.cId]
+                )
+                const result3 = await client.query('COMMIT')
 
-            res.status(201).json(
-                {
-                    status: "success",
-                    data: {
-                        attendee: [ results.rows[0], results2.rows[0] ]
-                    },
-                })
-        } 
+                if(results && results2){
+        
+                    res.status(201).json(
+                        {
+                            status: "success",
+                            data: {
+                                attendee: [ results.rows[0], results2.rows[0] ]
+                            },
+                        })
+                } 
+        }
+        else {
+
+            const results2 = await client.query(
+                "INSERT INTO \"CompetitionParticipant_Competition\" (\"CompetitionParticipant_ParticipantId\", \"Competition_CompetitionId\") VALUES ($1, $2) RETURNING *", [req.body.participantId, req.params.cId]
+                )
+                const result3 = await client.query('COMMIT')
+            
+            if(result3){
+    
+                res.status(201).json(
+                    {
+                        status: "success",
+                        data: {
+                            attendee: [ results2.rows[0] ]
+                        },
+                    })
+            } 
+        }
 
     } catch (err) {
 
