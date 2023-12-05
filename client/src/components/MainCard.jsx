@@ -4,9 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const MainCard = (props) => {
 
+    // console.log(props)
+
     return (
         <div className="boder border-info" style={{ width: '15rem'}}>
-            <Link to = {`/${props.nature}/${props.key}`}>
+            <Link to = {`/${props.nature}/${props.id}`}>
             <Card  className='d-flex align-items-center bg-info'>
                 <Card.Img src={props.image}/>
                 <Card.Body>

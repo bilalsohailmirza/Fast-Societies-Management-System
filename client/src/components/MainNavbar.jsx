@@ -17,8 +17,9 @@ const MainNavbar = () => {
 
           <Nav variant="dark" className="nav-links fs-5 fw-bold">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/societies">Societies</Nav.Link>
 
-            <NavDropdown title="Societies" id="basic-nav-dropdown">
+            <NavDropdown title="" id="basic-nav-dropdown">
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">
               Procom
               </NavDropdown.Item>
@@ -30,7 +31,9 @@ const MainNavbar = () => {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title="Events" id="basic-nav-dropdown">
+            <Nav.Link href="/">Events</Nav.Link>
+
+            <NavDropdown title="" id="basic-nav-dropdown">
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">Procom</NavDropdown.Item>
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.2">Coders Cup</NavDropdown.Item>
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.3">Developers Day</NavDropdown.Item>

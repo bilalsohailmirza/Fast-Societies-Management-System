@@ -8,7 +8,7 @@ import CardsSection from "../components/CardsSection"
 import Footer from '../components/Footer'
 
 
-const Home = () => {
+const Home = (props) => {
 
     const {societies, setSocieties} = useContext(SocietiesContext)
     const {events, setEvents} = useContext(EventsContext)
@@ -38,7 +38,7 @@ const Home = () => {
     }, [setEvents])
         
         if(events.length > 0){ 
-            console.log(events)
+            // console.log(events)
         } 
 
         
@@ -49,6 +49,7 @@ const Home = () => {
             ...rest
           }));
 
+        //   console.log(newSocieties)
 
         const newEvents = events.map(({
             EventId: id, EventName: name, EventLogo: logo, EventFee: fee, EventDescription: description,
@@ -57,6 +58,10 @@ const Home = () => {
           }) => ({ id, name, logo, fee, description, date, sid,
             ...rest
           }));
+
+        //   console.log(newEvents)
+
+
     return (
         <>
         <MainNavbar/ >

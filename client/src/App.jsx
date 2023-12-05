@@ -7,6 +7,8 @@ import { SocietyContextProvider, EventContextProvider } from './context/AllConte
 // import CardsSection from './components/CardsSection';
 
 import Home from './pages/Home';
+import AllSocieties from './pages/AllSocieties';
+import Society from './pages/Society';
 
 const App = () => {
   return (
@@ -17,7 +19,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
         <Route exact path="/" element={<Home/>} />
+          <Route exact path="/societies" element={<AllSocieties/>} />
+            <Route path="/societies/:societyId" element={<Society />} />
+          
+          <Route exact path="/events" element={<Home/>} />
+    
         </Routes>
+
         </BrowserRouter>
       </EventContextProvider>
     </SocietyContextProvider>

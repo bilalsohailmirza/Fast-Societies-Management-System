@@ -1,0 +1,13 @@
+.eventImage{
+    width: 45px;
+}
+.detailImage img{
+    height: 60vh;
+    
+display: block;
+margin: auto;
+    /* height: 30vh; */
+}
+.detailDesc {
+    width: 45vw;
+}

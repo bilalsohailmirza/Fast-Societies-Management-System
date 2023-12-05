@@ -25,7 +25,8 @@ const CardsSection = (props) => {
         else if (props.heading === 'Events'){
             return(
                 <MainCard 
-                    key={card.id} 
+                    key={card.id}
+                    id = {card.id}
                     title={card.name} 
                     image={'../src/assets/home/procom-logo.jpeg'}
                     nature = {props.heading.toLowerCase()}
