@@ -72,26 +72,52 @@ router.post("/:eId/attendees/", async (req, res) => {
  
     try {
         const res1 = await client.query('BEGIN')
-        const results = await client.query(
-            "INSERT INTO \"EventAttendee\" (\"AttendeeId\", \"AttendeeName\", \"AttendeePhone\", \"AttendeeEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
-            [req.body.attendeeId, req.body.attendeeName, req.body.attendeePhone, req.body.attendeeEmail]
-            );
-        
-        const results2 = await client.query(
-            "INSERT INTO \"Event_EventAttendee\" (\"Event_EventId\", \"EventAttendee_AttendeeId\") VALUES ($1, $2) RETURNING *", [req.params.eId, req.body.attendeeId]
+        const boolRes = client.query(
+            "SELECT check_event_participant_exists($1, $2);",
+            [req.body.attendeePhone, req.body.attendeeEmail]
         )
-        const result3 = await client.query('COMMIT')
+        console.log("Response from Function: ", boolRes)
+        if(!boolRes) {
+            console.log(boolRes)
+            const results = await client.query(
+                "INSERT INTO \"EventAttendee\" (\"AttendeeId\", \"AttendeeName\", \"AttendeePhone\", \"AttendeeEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
+                [req.body.attendeeId, req.body.attendeeName, req.body.attendeePhone, req.body.attendeeEmail]
+                );
+            const results2 = await client.query(
+                "INSERT INTO \"Event_EventAttendee\" (\"Event_EventId\", \"EventAttendee_AttendeeId\") VALUES ($1, $2) RETURNING *", [req.params.eId, req.body.attendeeId]
+            )
+            const result3 = await client.query('COMMIT')
 
-        if(results && results2){
+            if(results && results2){
 
-            res.status(201).json(
-                {
-                    status: "success",
-                    data: {
-                        attendee: [ results.rows[0], results2.rows[0] ]
-                    },
-                })
-        } 
+                res.status(201).json(
+                    {
+                        status: "success",
+                        data: {
+                            attendee: [ results.rows[0], results2.rows[0] ]
+                        },
+                    })
+            } 
+        }
+        else {
+            console.log(boolRes)
+            const results2 = await client.query(
+                "INSERT INTO \"Event_EventAttendee\" (\"Event_EventId\", \"EventAttendee_AttendeeId\") VALUES ($1, $2) RETURNING *", [req.params.eId, req.body.attendeeId]
+            )
+            const result3 = await client.query('COMMIT')
+            
+            
+            if(result3){
+                
+                res.status(201).json(
+                    {
+                        status: "success",
+                        data: {
+                            attendee: [ results2.rows[0]]
+                        },
+                    })
+                } 
+        }
 
     } catch (err) {
 
