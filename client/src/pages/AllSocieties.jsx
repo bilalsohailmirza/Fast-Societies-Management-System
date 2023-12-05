@@ -21,20 +21,20 @@ const AllSocieties = () => {
             console.log(err)
         }
         if(societies.length > 0) {
-            // console.log(societies)
+            console.log(societies)
         }
     }, [setSocieties])
 
 
     
     const newSocieties = societies.map(({
-        SocietyId: id, SocietyName: name, SocietyLogo: logo, SocietyDescription: description,
+        SocietyId: id, SocietyName: name, SocietyLogo: logo, SocietyDescription: description, SocietyImage: image,
         ...rest
-      }) => ({ id, name, logo, description,
+      }) => ({ id, name, logo, description, image,
         ...rest
       }));
 
-    // console.log(newSocieties)
+    console.log(newSocieties)
 
     const detailComponents = newSocieties.map((society) => {
                 
@@ -44,7 +44,8 @@ const AllSocieties = () => {
                     key={society.id}
                     id = {society.id} 
                     title={society.name} 
-                    image={'../src/assets/home/procom-logo.jpeg'}
+                    image={society.image}
+                    description={society.description}
                     // nature = {props.heading.toLowerCase()}
                 /> 
 

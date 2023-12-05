@@ -23,12 +23,15 @@ const MainNavbar = () => {
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">
               Procom
               </NavDropdown.Item>
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.2">ACM</NavDropdown.Item>
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.3">GDSC</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.4">
+              <Nav.Link href="/societies/Procom">Procom</Nav.Link>
+              <NavDropdown.Item className="drop-link bg-info" href="/societies/Acm">ACM</NavDropdown.Item>
+              <NavDropdown.Item className="drop-link bg-info" href="/societies/Fdss">FDSS</NavDropdown.Item>
+              <NavDropdown.Item className="drop-link bg-info" href="/societies/Cbs">CBS</NavDropdown.Item>
+              <NavDropdown.Item className="drop-link bg-info" href="/societies/Decs">DECS</NavDropdown.Item>
+              {/* <NavDropdown.Divider /> */}
+              {/* <NavDropdown.Item className="drop-link bg-info" href="#action/3.4">
                 Separated link
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
             </NavDropdown>
 
             <Nav.Link href="/">Events</Nav.Link>

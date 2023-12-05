@@ -1,42 +1,44 @@
 import axios from 'axios'
 import { useEffect, useContext } from 'react'
 import { SocietiesContext, EventsContext } from '../context/AllContexts'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import MainNavbar from "../components/MainNavbar"
 import Footer from '../components/Footer'
 import DescriptionSection from '../components/DescriptionSection'
 import CardsSection from '../components/CardsSection'
 
-const Society = (props) => {
+const Event = (props) => {
 
-    const location = useLocation()
-    console.log(location)
-    const id = location.state.id 
-    console.log(id)
-
+    // const location = useLocation()
+    // console.log(location)
+    // const id = location.state.id 
+    // console.log(id)
+    const eventParam = useParams()
+    console.log("Event Param: ", eventParam)
     const {societies, setSocieties} = useContext(SocietiesContext)
     const {events, setEvents} = useContext(EventsContext)
+    console.log("Society ID: ", societies)
     // console.log(handle)
     
-    useEffect(() => {
-        try{
+    // useEffect(() => {
+    //     try{
 
-            axios.get(`http://localhost:5000/api/v1/societies/${id}`)
-            .then((results) => setSocieties(results.data.data.societies))
+    //         axios.get(`http://localhost:5000/api/v1/societies/${id}`)
+    //         .then((results) => setSocieties(results.data.data.societies))
             
-        }catch(err) {
-            console.log(err)
-        }
-        if(societies.length > 0) {
-            console.log("Single Socity: " ,societies[0])
-        }
-    }, [setSocieties])
+    //     }catch(err) {
+    //         console.log(err)
+    //     }
+    //     if(societies.length > 0) {
+    //         // console.log(societies)
+    //     }
+    // }, [setSocieties])
 
     useEffect(() => {
         try{
 
-            axios.get(`http://localhost:5000/api/v1/societies/${id}/events`)
+            axios.get(`http://localhost:5000/api/v1/societies/${societies.SocietyId}/events/${{eventParam}}`)
             .then((results) => setEvents(results.data.data.events))
             
         }catch(err) {
@@ -65,10 +67,10 @@ const Society = (props) => {
         <div className="">
             <MainNavbar />
             <DescriptionSection 
-                id = {societies[0].SocietyId}
-                title = {societies[0].SocietyName}
-                image = {societies[0].SocietyImage}
-                description = {societies[0].SocietyDescription}
+                id = {events[0].EventId}
+                title = {events[0].EventName}
+                // image = {}
+                // description = {}
             />
             <CardsSection heading = {"events"} values = {newEvents} />
             <Footer />
@@ -77,4 +79,4 @@ const Society = (props) => {
     )
 }
 
-export default Society;
+export default Event;

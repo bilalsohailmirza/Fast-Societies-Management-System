@@ -9,6 +9,8 @@ import { SocietyContextProvider, EventContextProvider } from './context/AllConte
 import Home from './pages/Home';
 import AllSocieties from './pages/AllSocieties';
 import Society from './pages/Society';
+import Event from './pages/Event';
+
 
 const App = () => {
   return (
@@ -21,8 +23,7 @@ const App = () => {
         <Route exact path="/" element={<Home/>} />
           <Route exact path="/societies" element={<AllSocieties/>} />
             <Route path="/societies/:societyId" element={<Society />} />
-          
-          <Route exact path="/events" element={<Home/>} />
+          <Route path="/events/:eventId" element={<Event />} />
     
         </Routes>
 

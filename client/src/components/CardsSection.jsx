@@ -15,7 +15,7 @@ const CardsSection = (props) => {
                     <MainCard 
                         key={card.id} 
                         title={card.name} 
-                        image={'../src/assets/home/procom-logo.jpeg'}
+                        image={card.logo}
                         nature = {props.heading.toLowerCase()}
                     /> 
 
@@ -28,7 +28,7 @@ const CardsSection = (props) => {
                     key={card.id}
                     id = {card.id}
                     title={card.name} 
-                    image={'../src/assets/home/procom-logo.jpeg'}
+                    image= {card.logo}
                     nature = {props.heading.toLowerCase()}
                 /> 
                 )   
@@ -40,7 +40,7 @@ const CardsSection = (props) => {
                     key={card.id}
                     id = {card.id}
                     title={card.name} 
-                    image={'../src/assets/home/procom-logo.jpeg'}
+                    image={card.logo}
                     nature = {props.heading}
                 /> 
                 )   

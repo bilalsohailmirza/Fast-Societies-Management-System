@@ -77,8 +77,8 @@ router.post("/:eId/attendees/", async (req, res) => {
             [req.body.attendeePhone, req.body.attendeeEmail]
         )
         console.log("Response from Function: ", boolRes)
-        if(!boolRes) {
-            console.log(boolRes)
+        
+            // console.log(boolRes)
             const results = await client.query(
                 "INSERT INTO \"EventAttendee\" (\"AttendeeId\", \"AttendeeName\", \"AttendeePhone\", \"AttendeeEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
                 [req.body.attendeeId, req.body.attendeeName, req.body.attendeePhone, req.body.attendeeEmail]
@@ -98,26 +98,8 @@ router.post("/:eId/attendees/", async (req, res) => {
                         },
                     })
             } 
-        }
-        else {
-            console.log(boolRes)
-            const results2 = await client.query(
-                "INSERT INTO \"Event_EventAttendee\" (\"Event_EventId\", \"EventAttendee_AttendeeId\") VALUES ($1, $2) RETURNING *", [req.params.eId, req.body.attendeeId]
-            )
-            const result3 = await client.query('COMMIT')
-            
-            
-            if(result3){
-                
-                res.status(201).json(
-                    {
-                        status: "success",
-                        data: {
-                            attendee: [ results2.rows[0]]
-                        },
-                    })
-                } 
-        }
+        
+             
 
     } catch (err) {
 

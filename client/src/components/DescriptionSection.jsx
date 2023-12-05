@@ -12,11 +12,11 @@ const DescriptionSection = (props) => {
                 {/* <Link to = {`/societies/${props.id}`}> */}
                 <h1>{props.title}</h1>
                 {/* </Link> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quam repellat velit, temporibus ipsum qui quis fugit doloremque dolores cupiditate earum laborum deleniti inventore, fugiat porro sint impedit. Animi et dolor quas illo, repellat iure ullam molestias voluptatum cumque tempora corporis, eum fugit quaerat quo beatae. Et, reiciendis earum! Dolore fugiat rerum aperiam quibusdam saepe accusantium ea, earum laudantium optio enim corporis ratione minima voluptate quasi vero totam et exercitationem amet incidunt veritatis? Velit explicabo reprehenderit quas qui, a voluptatibus. Ab commodi odio et facere cum fugit porro neque, quia unde labore repudiandae officia hic aliquam facilis sint excepturi voluptates.</p>
+                <p>{props.description}</p>
             </div>
 
             <div className="detailImage">
-                <img src = "../src/assets/event/procom.jpg" alt="Event Image" />
+                <img src = {props.image} alt="Event Image" />
             </div>
         </div>
     )
