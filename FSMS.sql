@@ -194,3 +194,13 @@ REFERENCES public."Society" ("SocietyId") MATCH SIMPLE
     ON DELETE CASCADE
     NOT VALID;
 COMMIT;
+
+
+ALTER TABLE "Event_EventAttendee"
+ADD UNIQUE ("EventAttendee_AttendeeId", "Event_EventId")
+
+ALTER TABLE "CompetitionParticipant_Competition"
+ADD UNIQUE ("Competition_CompetitionId", "CompetitionParticipant_ParticipantId")
+
+ALTER TABLE "TeamMember_Team"
+ADD UNIQUE ("Team_TeamId", "TeamMember_RollNumber")
