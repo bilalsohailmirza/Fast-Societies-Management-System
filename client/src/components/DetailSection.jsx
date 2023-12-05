@@ -26,7 +26,7 @@ const DetailSection = (props) => {
             </div>
 
             <div className="detailImage">
-                <img src = {props.image} alt="Event Image" />
+                <img src = {props.image} alt="Image" />
             </div>
         </div>
     )

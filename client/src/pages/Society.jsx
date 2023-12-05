@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 
 import MainNavbar from "../components/MainNavbar"
 import Footer from '../components/Footer'
-import DescriptionSection from '../components/DescriptionSection'
+import DescriptionSection from '../components/SocietyDescription'
 import CardsSection from '../components/CardsSection'
 
 const Society = (props) => {
@@ -63,7 +63,7 @@ const Society = (props) => {
 
     return (
         <div className="">
-            <MainNavbar />
+            {/* <MainNavbar /> */}
             <DescriptionSection 
                 id = {societies[0].SocietyId}
                 title = {societies[0].SocietyName}

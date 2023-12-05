@@ -55,7 +55,7 @@ const AllSocieties = () => {
     return (
         <div className="">
 
-        <MainNavbar />
+        {/* <MainNavbar /> */}
         {detailComponents}
         <Footer />
 

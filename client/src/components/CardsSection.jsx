@@ -3,7 +3,7 @@ import MainCard from "./MainCard";
 
 const CardsSection = (props) => {
     const cardValues = props.values
-    // console.log(cardValues)
+    console.log(cardValues)
        
 
     const cardComponents = cardValues.map((card) => {

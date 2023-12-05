@@ -64,7 +64,7 @@ const Home = (props) => {
 
     return (
         <>
-        <MainNavbar/ >
+        {/* <MainNavbar/ > */}
         <HomeCarousel />
         <CardsSection heading={"Societies"} values = {newSocieties} />
         <CardsSection heading = {"Events"} values = {newEvents} />

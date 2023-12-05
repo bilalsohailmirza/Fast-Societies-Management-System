@@ -1,45 +1,28 @@
 import axios from 'axios'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { SocietiesContext, EventsContext } from '../context/AllContexts'
 import { useLocation, useParams } from 'react-router-dom'
 
-import MainNavbar from "../components/MainNavbar"
 import Footer from '../components/Footer'
-import DescriptionSection from '../components/DescriptionSection'
-import CardsSection from '../components/CardsSection'
+import EventDescription from '../components/EventDescription'
+
 
 const Event = (props) => {
 
-    // const location = useLocation()
-    // console.log(location)
-    // const id = location.state.id 
-    // console.log(id)
-    const eventParam = useParams()
-    console.log("Event Param: ", eventParam)
+    
+    const { eventId }= useParams()
+    // console.log("Event Param: ", eventId)
     const {societies, setSocieties} = useContext(SocietiesContext)
     const {events, setEvents} = useContext(EventsContext)
-    console.log("Society ID: ", societies)
-    // console.log(handle)
-    
-    // useEffect(() => {
-    //     try{
+    const [event, setEvent] = useState({})
 
-    //         axios.get(`http://localhost:5000/api/v1/societies/${id}`)
-    //         .then((results) => setSocieties(results.data.data.societies))
-            
-    //     }catch(err) {
-    //         console.log(err)
-    //     }
-    //     if(societies.length > 0) {
-    //         // console.log(societies)
-    //     }
-    // }, [setSocieties])
+    // console.log("Society ID: ", societies)
 
     useEffect(() => {
         try{
 
-            axios.get(`http://localhost:5000/api/v1/societies/${societies.SocietyId}/events/${{eventParam}}`)
-            .then((results) => setEvents(results.data.data.events))
+            axios.get(`http://localhost:5000/api/v1/societies/${societies.SocietyId}/events/${eventId}`)
+            .then((results) => setEvent(results.data.data.events[0]))
             
         }catch(err) {
             console.log(err)
@@ -48,7 +31,7 @@ const Event = (props) => {
     }, [setEvents])
         
         if(events.length > 0){ 
-            console.log(events)
+            // console.log(events)
         }
 
 
@@ -65,15 +48,15 @@ const Event = (props) => {
 
     return (
         <div className="">
-            <MainNavbar />
-            <DescriptionSection 
-                id = {events[0].EventId}
-                title = {events[0].EventName}
-                // image = {}
-                // description = {}
+            
+            <EventDescription 
+                id = {event.EventId}
+                title = {event.EventName}
+                image = {event.EventLogo}
+                description = {event.Description}
             />
-            <CardsSection heading = {"events"} values = {newEvents} />
-            <Footer />
+
+            {/* <Footer /> */}
         </div>
         
     )

@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 
 // import './DescriptionSection.css';
 
-const DescriptionSection = (props) => {
+const EventDescription = (props) => {
     console.log(props)
     return (
 
         <div className="m-3 d-flex justify-content-between">
             <div className="detailDesc">
-                {/* <Link to = {`/societies/${props.id}`}> */}
                 <h1>{props.title}</h1>
-                {/* </Link> */}
                 <p>{props.description}</p>
             </div>
 
@@ -22,4 +20,4 @@ const DescriptionSection = (props) => {
     )
 }
 
-export default DescriptionSection;
+export default EventDescription;
