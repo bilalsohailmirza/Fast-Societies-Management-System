@@ -107,7 +107,7 @@ ALTER TABLE IF EXISTS public."Event"
     ON DELETE NO ACTION
     NOT VALID;
 
-
+------
 ALTER TABLE IF EXISTS public."Competition"
     ADD FOREIGN KEY ("EventId")
     REFERENCES public."Event" ("EventId") MATCH SIMPLE
@@ -195,6 +195,18 @@ REFERENCES public."Society" ("SocietyId") MATCH SIMPLE
     NOT VALID;
 COMMIT;
 
+BEGIN;
+ALTER TABLE IF EXISTS public."Event_EventAttendee"
+DROP CONSTRAINT "Event_EventAttendee_EventAttendee_AttendeeId_fkey";
+
+ALTER TABLE IF EXISTS public."Event_EventAttendee"
+ADD CONSTRAINT "Event_EventAttendee_EventAttendee_AttendeeId_fkey" FOREIGN KEY ("EventAttendee_AttendeeId")
+REFERENCES public."EventAttendee" ("AttendeeId") MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+COMMIT;
+
 
 ALTER TABLE "Event_EventAttendee"
 ADD UNIQUE ("EventAttendee_AttendeeId", "Event_EventId")
@@ -204,3 +216,15 @@ ADD UNIQUE ("Competition_CompetitionId", "CompetitionParticipant_ParticipantId")
 
 ALTER TABLE "TeamMember_Team"
 ADD UNIQUE ("Team_TeamId", "TeamMember_RollNumber")
+
+ALTER TABLE "EventAttendee"
+add UNIQUE ("AttendeePhone", "AttendeeEmail")
+
+ALTER TABLE "CompetitionParticipant"
+add UNIQUE ("ParticipantPhone", "ParticipantEmail")
+
+ALTER TABLE "TeamMember"
+add UNIQUE ("Phone")
+
+ALTER TABLE "Society"
+add UNIQUE ("SocietyName")
