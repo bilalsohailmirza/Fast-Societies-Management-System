@@ -240,3 +240,29 @@ add UNIQUE ("SocietyName")
 alter table "Event" add column "Registration" boolean default true;
 
 update "Event" set "Registration" = false where "EventId" in ('Procom-01', 'Acm-02');
+
+-- CREATE TABLE IF NOT EXISTS public."Log_Participant"
+-- (
+-- 	"LogId" serial primary key,
+-- 	created_on timestamp default CURRENT_TIMESTAMP not null,
+--     "ParticipantId" character varying,
+--     "ParticipantName" character varying,
+--     "ParticipantPhone" character varying,
+--     "ParticipantEmail" character varying
+-- );
+
+-- CREATE OR REPLACE FUNCTION logging_function() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+--     INSERT INTO
+--         "Log_Participant"("ParticipantId", "ParticipantName","ParticipantPhone", "ParticipantEmail")
+--         VALUES(new."ParticipantId", new."ParticipantName", new."ParticipantPhone", new."ParticipantEmail");
+--         RETURN new;
+-- END;
+-- $BODY$
+-- language plpgsql;
+
+-- CREATE TRIGGER logging_trigger
+--      AFTER INSERT OR UPDATE ON "CompetitionParticipant"
+--      FOR EACH ROW
+--      EXECUTE PROCEDURE logging_function();
