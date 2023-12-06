@@ -8,13 +8,13 @@ export const SocietyContextProvider = (props) => {
 
     const [societies, setSocieties] = useState([])
 
-    const viewSocieties = (society) => {
+    const addSocieties = (society) => {
         setSocieties([...societies, society])
     }
     return (
 
         <SocietiesContext.Provider value = {
-            {societies, setSocieties, viewSocieties}
+            {societies, setSocieties, viewSocieties: addSocieties}
             }
         >
             {props.children}
