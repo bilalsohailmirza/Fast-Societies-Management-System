@@ -27,10 +27,10 @@ const CompetitionForm = () => {
             axios.post(
                 `http://localhost:5000/api/v1/events/${events.EventId}/competitions/${competitionId}/participants`,
                 {
-                    'attendeeId': participantId,
-                    'attendeeName': participantName, 
-                    'attendeeEmail': participantEmail, 
-                    'attendeePhone': participantPhone,
+                    'participantId': participantId,
+                    'participantName': participantName, 
+                    'participantEmail': participantEmail, 
+                    'participantPhone': participantPhone,
                 }
             )
             .then((response) => console.log(response))

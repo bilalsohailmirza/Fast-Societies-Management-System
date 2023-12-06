@@ -72,7 +72,7 @@ router.post("/:eId/attendees/", async (req, res) => {
  
     try {
         const res1 = await client.query('BEGIN')
-        const boolRes = client.query(
+        const boolRes = await client.query(
             "SELECT check_event_participant_exists($1, $2);",
             [req.body.attendeePhone, req.body.attendeeEmail]
         )

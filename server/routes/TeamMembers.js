@@ -61,29 +61,30 @@ router.get("/:tId/members/:mId" , async (req, res) => {
 });
 
 // Create a Memeber of a Team
-// router.post(":tId/members/", async (req, res) => {
 
-//     try {
+router.post("/:tId/members/", async (req, res) => {
 
-//         // console.log(req.params.id)
-//         const results = await db.query( 
-//             "INSERT INTO \"Team\" (\"TeamId\", \"SocietyId\", \"TeamName\") VALUES ($1, $2, $3) RETURNING *", 
-//             [req.body.teamId, req.params.sId, req.body.teamName]
-//             );
+    try {
 
-//             // console.log(results)
-//         res.status(201).json(
-//             {
-//                 status: "success",
-//                 data: {
-//                     restaurant: results.rows[0],
-//                 },
-//             }
-//         );
-//     }   catch(err) {
-//             console.log(err);
-//         }
-// })
+        // console.log(req.params.id)
+        const results = await db.query( 
+            "INSERT INTO \"Team\" (\"TeamId\", \"SocietyId\", \"TeamName\") VALUES ($1, $2, $3) RETURNING *", 
+            [req.body.teamId, req.params.sId, req.body.teamName]
+            );
+
+            // console.log(results)
+        res.status(201).json(
+            {
+                status: "success",
+                data: {
+                    restaurant: results.rows[0],
+                },
+            }
+        );
+    }   catch(err) {
+            console.log(err);
+        }
+})
 
 // // Delete a Team
 // router.delete("/:sId/teams/:tId", async (req, res) => {

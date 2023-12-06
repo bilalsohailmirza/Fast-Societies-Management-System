@@ -73,11 +73,11 @@ router.post("/:eId/competitions/:cId/participants", async (req, res) => {
     try {
         const res1 = await client.query('BEGIN')
 
-        const boolRes = client.query(
+        const boolRes = await client.query(
             "SELECT check_event_participant_exists($1, $2);",
             [req.body.attendeePhone, req.body.attendeeEmail]
         )
-        if(!boolRes) {
+        // if(!boolRes) {
 
             const results = await client.query(
                 "INSERT INTO \"CompetitionParticipant\" (\"ParticipantId\", \"ParticipantName\", \"ParticipantPhone\", \"ParticipantEmail\") VALUES ($1, $2, $3, $4) RETURNING *", 
@@ -89,7 +89,7 @@ router.post("/:eId/competitions/:cId/participants", async (req, res) => {
                 )
                 const result3 = await client.query('COMMIT')
 
-                if(results && results2){
+                // if(results && results2){
         
                     res.status(201).json(
                         {
@@ -98,26 +98,26 @@ router.post("/:eId/competitions/:cId/participants", async (req, res) => {
                                 attendee: [ results.rows[0], results2.rows[0] ]
                             },
                         })
-                } 
-        }
-        else {
+                // } 
+        // }
+        // else {
 
-            const results2 = await client.query(
-                "INSERT INTO \"CompetitionParticipant_Competition\" (\"CompetitionParticipant_ParticipantId\", \"Competition_CompetitionId\") VALUES ($1, $2) RETURNING *", [req.body.participantId, req.params.cId]
-                )
-                const result3 = await client.query('COMMIT')
+            // const results2 = await client.query(
+            //     "INSERT INTO \"CompetitionParticipant_Competition\" (\"CompetitionParticipant_ParticipantId\", \"Competition_CompetitionId\") VALUES ($1, $2) RETURNING *", [req.body.participantId, req.params.cId]
+            //     )
+            //     const result3 = await client.query('COMMIT')
             
-            if(result3){
+            // if(result3){
     
-                res.status(201).json(
-                    {
-                        status: "success",
-                        data: {
-                            attendee: [ results2.rows[0] ]
-                        },
-                    })
-            } 
-        }
+            //     res.status(201).json(
+            //         {
+            //             status: "success",
+            //             data: {
+            //                 attendee: [ results2.rows[0] ]
+            //             },
+            //         })
+            // } 
+        // }
 
     } catch (err) {
 
