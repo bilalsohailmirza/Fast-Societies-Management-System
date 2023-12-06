@@ -3,7 +3,7 @@ import { useEffect, useContext, useState } from 'react'
 import { SocietiesContext, EventsContext, CompetitionsContext } from '../context/AllContexts'
 import { useParams } from 'react-router-dom'
 
-
+import MainNavbar from '../components/MainNavbar'
 import EventDescription from '../components/EventDescription'
 import EventForm from '../components/EventForm'
 import CardsSection from '../components/CardsSection'
@@ -71,7 +71,8 @@ const Event = () => {
 
     return (
         <div className="">
-            
+
+            <MainNavbar/ >
             <EventDescription 
 
                 id = {events.EventId}

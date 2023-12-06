@@ -64,7 +64,7 @@ const Society = (props) => {
 
     return (
         <div className="">
-            {/* <MainNavbar /> */}
+            <MainNavbar />
             <DescriptionSection 
                 id = {societies[0].SocietyId}
                 title = {societies[0].SocietyName}

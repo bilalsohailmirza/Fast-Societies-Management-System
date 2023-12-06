@@ -3,7 +3,7 @@ import { useEffect, useContext, useState } from 'react'
 import { EventsContext, CompetitionsContext } from '../context/AllContexts'
 import { useParams } from 'react-router-dom'
 
-
+import MainNavbar from '../components/MainNavbar'
 import EventDescription from '../components/EventDescription'
 import CompetitionForm from '../components/CompetitionForm'
 
@@ -47,6 +47,7 @@ const Competition = () => {
     return (
         <div className="">
             
+            <MainNavbar/ >
             <EventDescription 
 
                 id = {competitions[0].CompetitionId}

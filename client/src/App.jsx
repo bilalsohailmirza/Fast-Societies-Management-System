@@ -9,6 +9,7 @@ import AllSocieties from './pages/AllSocieties';
 import Society from './pages/Society';
 import Event from './pages/Event';
 import Competition from './pages/Competition';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   return (
@@ -21,13 +22,15 @@ const App = () => {
       <EventContextProvider>
       <CompetitionContextProvider>
 
-        <MainNavbar/ >
+        
         <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
           <Route exact path="/societies" element={<AllSocieties/>} />
           <Route path="/societies/:societyId" element={<Society />} />
           <Route path="/events/:eventId" element={<Event />} />
           <Route path="/competition/:competitionId" element={<Competition />} />
+
+          <Route path="/admin" element={<Dashboard/>} />
         </Routes>
 
       </CompetitionContextProvider>
