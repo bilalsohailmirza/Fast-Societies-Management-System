@@ -228,3 +228,7 @@ add UNIQUE ("Phone")
 
 ALTER TABLE "Society"
 add UNIQUE ("SocietyName")
+
+alter table "Event" add column "Registration" boolean default true;
+
+update "Event" set "Registration" = false where "EventId" in ('Procom-01', 'Acm-02');
