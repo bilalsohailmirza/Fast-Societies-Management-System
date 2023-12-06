@@ -207,6 +207,14 @@ REFERENCES public."EventAttendee" ("AttendeeId") MATCH SIMPLE
     NOT VALID;
 COMMIT;
 
+ALTER TABLE IF EXISTS public."Event_EventAttendee"
+ADD CONSTRAINT "Event_EventAttendee_Event_EventId_fkey" FOREIGN KEY ("Event_EventId")
+REFERENCES public."Event" ("EventId") MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+COMMIT;
+
 
 ALTER TABLE "Event_EventAttendee"
 ADD UNIQUE ("EventAttendee_AttendeeId", "Event_EventId")

@@ -39,6 +39,7 @@ const CardsSection = (props) => {
                 <MainCard 
                     key={card.id}
                     id = {card.id}
+                    parentId = {card.parentId}
                     title={card.name} 
                     image={card.logo}
                     nature = {props.heading}

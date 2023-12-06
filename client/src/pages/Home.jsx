@@ -53,9 +53,9 @@ const Home = (props) => {
 
         const newEvents = events.map(({
             EventId: id, EventName: name, EventLogo: logo, EventFee: fee, EventDescription: description,
-            EventDate: date, SocietyId: sid,
+            EventDate: date, SocietyId: parentId,
             ...rest
-          }) => ({ id, name, logo, fee, description, date, sid,
+          }) => ({ id, name, logo, fee, description, date, parentId,
             ...rest
           }));
 

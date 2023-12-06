@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { SocietiesContext, EventsContext } from '../context/AllContexts'
 import { useLocation } from 'react-router-dom'
 
@@ -17,6 +17,7 @@ const Society = (props) => {
 
     const {societies, setSocieties} = useContext(SocietiesContext)
     const {events, setEvents} = useContext(EventsContext)
+    const [society, setSociety] = useState([])
     // console.log(handle)
     
     useEffect(() => {
@@ -52,9 +53,9 @@ const Society = (props) => {
 
     const newEvents = events.map(({
         EventId: id, EventName: name, EventLogo: logo, EventFee: fee, EventDescription: description,
-        EventDate: date, SocietyId: sid,
+        EventDate: date, SocietyId: parentId,
         ...rest
-        }) => ({ id, name, logo, fee, description, date, sid,
+        }) => ({ id, name, logo, fee, description, date, parentId,
         ...rest
         }));
 

@@ -1,11 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 
 // import './DescriptionSection.css';
-import Form  from "./Form";
+
 const EventDescription = (props) => {
-    // console.log(props)
-    
+    console.log(props)
     
     return (
 

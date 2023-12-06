@@ -34,18 +34,6 @@ const MainNavbar = () => {
               </NavDropdown.Item> */}
             </NavDropdown>
 
-            <Nav.Link href="/">Events</Nav.Link>
-
-            <NavDropdown title="" id="basic-nav-dropdown">
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">Procom</NavDropdown.Item>
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.2">Coders Cup</NavDropdown.Item>
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.3">Developers Day</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item className="drop-link bg-info" href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-
           </Nav>
         </Navbar.Collapse>
       </Container>

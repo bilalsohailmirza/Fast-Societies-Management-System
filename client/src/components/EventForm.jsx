@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const Form = () => {
+const EventForm = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ const Form = () => {
     
     const param = useParams()
 
-    console.log("Param from From Component: ", param.eventId)
+    // console.log("Param from From Component: ", param.eventId)
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -78,7 +78,7 @@ const Form = () => {
 
                 </div>
 
-                <button onClick={handleSubmit} type = 'submit' className='mx-1 col-1 btn btn-primary'>Add</button>
+                <button onClick={handleSubmit} type = 'submit' className='mx-1 col-1 btn btn-primary'>Submit</button>
 
             </div>
         </form>
@@ -86,4 +86,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default EventForm;

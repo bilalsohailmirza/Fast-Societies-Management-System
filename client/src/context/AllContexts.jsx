@@ -2,7 +2,7 @@ import {useState, createContext} from "react"
 
 export const SocietiesContext = createContext();
 export const EventsContext = createContext();
-
+export const CompetitionsContext = createContext();
 
 export const SocietyContextProvider = (props) => {
 
@@ -39,4 +39,22 @@ export const EventContextProvider = (props) => {
         </EventsContext.Provider>
     )
 }  
+
+export const CompetitionContextProvider = (props) => {
+
+    const [competitions, setCompetitions] = useState([])
+
+    const viewCompetitions = (competition) => {
+        setCompetitions([...competitions, competition])
+    }
+    return (
+
+        <CompetitionsContext.Provider value = {
+            {competitions, setCompetitions, viewCompetitions}
+            }
+        >
+            {props.children}
+        </CompetitionsContext.Provider>
+    )
+}
 

@@ -10,6 +10,7 @@ const MainCard = (props) => {
     //     navigate(`/${nature}/${id}`, {replace: true, state:{id}});
     // }
     // to = {`/${props.nature}/${props.id}`
+    let parentId = props.parentId 
     return (
         <div className="boder border-info" style={{ width: '15rem'}}>
             <Link to = {`/${props.nature}/${props.id}`} >

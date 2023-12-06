@@ -21,7 +21,7 @@ const AllSocieties = () => {
             console.log(err)
         }
         if(societies.length > 0) {
-            console.log(societies)
+            // console.log(societies)
         }
     }, [setSocieties])
 
@@ -34,7 +34,7 @@ const AllSocieties = () => {
         ...rest
       }));
 
-    console.log(newSocieties)
+    // console.log(newSocieties)
 
     const detailComponents = newSocieties.map((society) => {
                 
