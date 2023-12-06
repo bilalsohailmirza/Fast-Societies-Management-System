@@ -266,3 +266,27 @@ update "Event" set "Registration" = false where "EventId" in ('Procom-01', 'Acm-
 --      AFTER INSERT OR UPDATE ON "CompetitionParticipant"
 --      FOR EACH ROW
 --      EXECUTE PROCEDURE logging_function();
+
+Last Update from Owais:
+
+-- ALTER TABLE "Log_Participant" ADD "CompetitionId" character varying;
+
+-- CREATE OR REPLACE FUNCTION logging_function2() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+-- 		   UPDATE "Log_Participant" set "CompetitionId" = new."Competition_CompetitionId" where "ParticipantId" = new."CompetitionParticipant_ParticipantId";
+--         RETURN new;
+-- END;
+-- $BODY$
+-- language plpgsql;
+
+-- CREATE TRIGGER logging_trigger2
+--      AFTER INSERT OR UPDATE ON "CompetitionParticipant_Competition"
+--      FOR EACH ROW
+--      EXECUTE PROCEDURE logging_function2();
+
+-- ALTER TABLE IF EXISTS public."CompetitionParticipant_Competition"
+--     ADD FOREIGN KEY ("CompetitionParticipant_ParticipantId")
+--     REFERENCES public."CompetitionParticipant" ("ParticipantId") MATCH SIMPLE
+--     ON DELETE CASCADE
+--     NOT VALID;
