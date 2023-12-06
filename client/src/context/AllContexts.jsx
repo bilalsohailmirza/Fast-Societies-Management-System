@@ -26,13 +26,13 @@ export const EventContextProvider = (props) => {
 
     const [events, setEvents] = useState([])
 
-    const viewEvents = (event) => {
+    const addEvents = (event) => {
         setEvents([...events, event])
     }
     return (
 
         <EventsContext.Provider value = {
-            {events, setEvents, viewEvents}
+            {events, setEvents, addEvents}
             }
         >
             {props.children}

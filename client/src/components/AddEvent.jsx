@@ -1,16 +1,19 @@
 import axios from 'axios' 
 import { useContext, useEffect, useState } from 'react'
 
-import { SocietiesContext } from '../context/AllContexts'
-import SocietiesList from './SocietiesList'
+import { SocietiesContext, EventsContext } from '../context/AllContexts'
+import EventsList from './EventsList' 
 
 
-const AddSociety = () => {
+const AddEvent = () => {
 
-    const {addSocieties} = useContext(SocietiesContext)
+    const {addEvents} = useContext(EventsContext)
 
+    const [societyId, setSocietyId] = useState('')
     const [id, setId] = useState('')
     const [name, setName] = useState('')
+    const initialValue = null
+    const [fee, setFee] = useState('')
     const [description, setDescription] = useState('')
     
 
@@ -18,14 +21,16 @@ const AddSociety = () => {
         e.preventDefault()
         try {
             axios.post(
-                "http://localhost:5000/api/v1/societies",
+                `http://localhost:5000/api/v1/societies/${societyId}/events`,
                 {
-                    'SocietyId': id, 
-                    'SocietyName': name, 
-                    'SocietyDescription': description,
+                    'eventId': id,  
+                    'eventName': name,
+                    'evetFee': fee, 
+                    // 'eventDate': date,
+                    'eventDesc': description,
                 }
             )
-            .then((response) => addSocieties(response.data.data.society))
+            .then((response) => addEvents(response.data.data.society))
 
         }catch(err) {
             console.log(err)
@@ -45,6 +50,17 @@ const AddSociety = () => {
 
             <div className="mb-3 flex-row d-flex justify-content-evenly">
 
+                 <div className=" mx-1">
+                    
+                    <input
+                    value = {societyId}
+                    onChange = {(e) => setSocietyId(e.target.value)}
+                    type="text" 
+                    className="form-control" 
+                    placeholder='Enter Society ID'
+                    />
+                </div>
+
                 <div className=" mx-1">
                     
                     <input
@@ -52,7 +68,7 @@ const AddSociety = () => {
                     onChange = {(e) => setId(e.target.value)}
                     type="text" 
                     className="form-control" 
-                    placeholder='Enter ID'
+                    placeholder='Enter Event ID'
                     />
                 </div>
 
@@ -63,6 +79,16 @@ const AddSociety = () => {
                     type="text" 
                     className="form-control" 
                     placeholder='Enter Name'
+                    />
+                </div>
+
+                <div className="mx-1">
+                    <input 
+                    value = {fee}
+                    onChange = {(e) => setFee(e.target.value)}
+                    type="number" 
+                    className="form-control" 
+                    placeholder='Enter Fee'
                     />
                 </div>
 
@@ -91,9 +117,9 @@ const AddSociety = () => {
 
         </form>
     </div>
-        <SocietiesList />
+        <EventsList />
     </div>
   )
 }
 
-export default AddSociety
+export default AddEvent

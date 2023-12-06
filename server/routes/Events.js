@@ -7,12 +7,34 @@ const cors = require('cors')
 const db = require('../db');
 router.use(express.json())
 
-// Get All Events
+// Get All Events of a Single Society
 router.get("/:sId/events", async (req, res) => {
+    
+    if (req.params.sId === 'allevents') {
+        try {
+        
+            console.log(req.params.sId)
+            const results = await db.query(
+                "SELECT * FROM \"Event\" ",[]
+                );
+            // console.log(results);
+            
+            res.status(200).json({
+                status: "success",
+            results: results.rowCount,
+            data: {
+                events: results.rows,
+            },
+        });
+    
+    }   catch(err) {
+            console.log(err);
+        }
+    }
 
     try {
         
-        console.log(req.params.sid)
+        console.log(req.params.sId)
         const results = await db.query(
             "SELECT * FROM \"Event\" WHERE \"SocietyId\" = $1",[req.params.sId]
             );
@@ -72,7 +94,7 @@ router.post("/:sId/events/", async (req, res) => {
             {
                 status: "success",
                 data: {
-                    restaurant: results.rows[0],
+                    event: results.rows[0],
                 },
             }
         );
@@ -82,7 +104,7 @@ router.post("/:sId/events/", async (req, res) => {
 })
 
 // Delete an Event
-router.delete("/:sId/events/:eId", async (req, res) => {
+router.delete("/events/:eId", async (req, res) => {
 
     try {
 
@@ -117,7 +139,7 @@ router.put("/:sId/events/:eId", async (req, res) => {
             {
                 status: "success",
                 data: {
-                    restaurant: results.rows[0],
+                    event: results.rows[0],
                 },
             }
             );
