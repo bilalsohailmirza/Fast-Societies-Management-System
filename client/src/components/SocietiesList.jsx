@@ -12,7 +12,7 @@ const SocietiesList = () => {
 
     const handleDelete = (id) => {
         try {
-            axios.delete(`http://localhost:5000/api/v1/restaurants/${id}`)
+            axios.delete(`http://localhost:5000/api/v1/societies/${id}`)
             .then((response) => setSocieties(societies.filter(society => {
                 return society.id !== id
             })))

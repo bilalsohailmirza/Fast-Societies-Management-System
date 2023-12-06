@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import { CompetitionsContext, EventsContext, SocietiesContext } from '../context/AllContexts'
 
 import SocietiesList from './SocietiesList'
+import AddSociety from './AddSociety' 
 
 const DashboardOptions = () => {
 
@@ -33,9 +34,7 @@ const DashboardOptions = () => {
         catch(err) {
             console.log(err)
 
-            return false
         }
-        return true
     }
     
     return (
@@ -50,7 +49,7 @@ const DashboardOptions = () => {
          
     </div>
 
-       { isSocieties ? <SocietiesList /> : <div className=""></div> }
+        { isSocieties ? <AddSociety /> : <div className=""></div> }
 
         </div>
   )
