@@ -1,9 +1,10 @@
 // import { React } from 'react'
 import {BrowserRouter, Routes, Route, } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SocietyContextProvider, EventContextProvider, CompetitionContextProvider } from './context/AllContexts';
+import { SocietyContextProvider, EventContextProvider, CompetitionContextProvider, ParticipantContextProvider, LogsContextProvider } from './context/AllContexts';
 
 import MainNavbar from './components/MainNavbar';
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import AllSocieties from './pages/AllSocieties';
 import Society from './pages/Society';
@@ -21,9 +22,13 @@ const App = () => {
     <SocietyContextProvider>
       <EventContextProvider>
       <CompetitionContextProvider>
+      <ParticipantContextProvider>
+      <LogsContextProvider>
 
         
         <Routes>
+
+        <Route path="*" element={<NotFound/>} />
         <Route path="/" element={<Home/>} />
           <Route exact path="/societies" element={<AllSocieties/>} />
           <Route path="/societies/:societyId" element={<Society />} />
@@ -33,6 +38,8 @@ const App = () => {
           <Route path="/admin" element={<Dashboard/>} />
         </Routes>
 
+      </LogsContextProvider>
+      </ParticipantContextProvider>
       </CompetitionContextProvider>
       </EventContextProvider>
     </SocietyContextProvider>

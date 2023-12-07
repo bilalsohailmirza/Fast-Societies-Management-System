@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
     try {
         console.log(req.body)
         const results = await db.query(
-            "INSERT INTO \"Society\" (\"SocietyId\", \"SocietyName\") VALUES ($1, $2) returning *", [req.body.SocietyId, req.body.SocietyName,]
+            "INSERT INTO \"Society\" (\"SocietyId\", \"SocietyName\", \"SocietyDescription\") VALUES ($1, $2, $3) returning *", [req.body.SocietyId, req.body.SocietyName, req.body.SocietyDescription]
             );
 
             console.log(results)
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
             {
                 status: "success",
                 data: {
-                    restaurant: results.rows[0],
+                    society: results.rows[0],
                 },
             }
         );

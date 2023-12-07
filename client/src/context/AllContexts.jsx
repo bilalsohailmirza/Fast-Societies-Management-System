@@ -3,18 +3,20 @@ import {useState, createContext} from "react"
 export const SocietiesContext = createContext();
 export const EventsContext = createContext();
 export const CompetitionsContext = createContext();
+export const ParticipantsContext = createContext();
+export const LogsContext = createContext();
 
 export const SocietyContextProvider = (props) => {
 
     const [societies, setSocieties] = useState([])
 
-    const viewSocieties = (society) => {
+    const addSocieties = (society) => {
         setSocieties([...societies, society])
     }
     return (
 
         <SocietiesContext.Provider value = {
-            {societies, setSocieties, viewSocieties}
+            {societies, setSocieties, viewSocieties: addSocieties}
             }
         >
             {props.children}
@@ -26,13 +28,13 @@ export const EventContextProvider = (props) => {
 
     const [events, setEvents] = useState([])
 
-    const viewEvents = (event) => {
+    const addEvents = (event) => {
         setEvents([...events, event])
     }
     return (
 
         <EventsContext.Provider value = {
-            {events, setEvents, viewEvents}
+            {events, setEvents, addEvents}
             }
         >
             {props.children}
@@ -44,13 +46,13 @@ export const CompetitionContextProvider = (props) => {
 
     const [competitions, setCompetitions] = useState([])
 
-    const viewCompetitions = (competition) => {
+    const addCompetitions = (competition) => {
         setCompetitions([...competitions, competition])
     }
     return (
 
         <CompetitionsContext.Provider value = {
-            {competitions, setCompetitions, viewCompetitions}
+            {competitions, setCompetitions, addCompetitions}
             }
         >
             {props.children}
@@ -58,3 +60,39 @@ export const CompetitionContextProvider = (props) => {
     )
 }
 
+export const ParticipantContextProvider = (props) => {
+
+    const [participants, setParticipants] = useState([])
+
+    const addParticipants = (participant) => {
+        setParticipants([...participants, participant])
+    }
+    return (
+
+        <ParticipantsContext.Provider value = {
+            {participants, setParticipants, addParticipants}
+            }
+        >
+            {props.children}
+        </ParticipantsContext.Provider>
+    )
+}
+
+
+export const LogsContextProvider = (props) => {
+
+    const [logs, setLogs] = useState([])
+
+    const addLogs = (log) => {
+        setLogs([...logs, log])
+    }
+    return (
+
+        <LogsContext.Provider value = {
+            {logs, setLogs, addLogs}
+            }
+        >
+            {props.children}
+        </LogsContext.Provider>
+    )
+}
