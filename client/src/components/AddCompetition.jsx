@@ -1,15 +1,16 @@
 import axios from 'axios' 
 import { useContext, useEffect, useState } from 'react'
 
-import { SocietiesContext, EventsContext } from '../context/AllContexts'
-import EventsList from './EventsList' 
+import { SocietiesContext, EventsContext, CompetitionsContext } from '../context/AllContexts'
+import CompetitionsList from './CompetitionsList' 
 
 
-const AddEvent = () => {
+const AddCompetition = () => {
 
-    const {addEvents} = useContext(EventsContext)
+    // const {addEvents} = useContext(EventsContext)
+    const {addCompetitions} = useContext(CompetitionsContext)
 
-    const [societyId, setSocietyId] = useState('')
+    const [eventId, setEventId] = useState('')
     const [id, setId] = useState('')
     const [name, setName] = useState('')
     const [fee, setFee] = useState('')
@@ -20,16 +21,16 @@ const AddEvent = () => {
         e.preventDefault()
         try {
             axios.post(
-                `http://localhost:5000/api/v1/societies/${societyId}/events`,
+                `http://localhost:5000/api/v1/events/${eventId}/competitions/`,
                 {
-                    'eventId': id,  
-                    'eventName': name,
-                    'evetFee': fee, 
+                    'competitionId': id,  
+                    'competitionName': name,
+                    'competitionFee': fee, 
                     // 'eventDate': date,
-                    'eventDesc': description,
+                    'competitionDesc': description,
                 }
             )
-            .then((response) => addEvents(response.data.data.society))
+            .then((response) => addCompetitions(response.data.data.competition))
 
         }catch(err) {
             console.log(err)
@@ -52,11 +53,11 @@ const AddEvent = () => {
                  <div className=" mx-1">
                     
                     <input
-                    value = {societyId}
-                    onChange = {(e) => setSocietyId(e.target.value)}
+                    value = {eventId}
+                    onChange = {(e) => setEventId(e.target.value)}
                     type="text" 
                     className="form-control" 
-                    placeholder='Enter Society ID'
+                    placeholder='Enter Event ID'
                     />
                 </div>
 
@@ -67,7 +68,7 @@ const AddEvent = () => {
                     onChange = {(e) => setId(e.target.value)}
                     type="text" 
                     className="form-control" 
-                    placeholder='Enter Event ID'
+                    placeholder='Enter Competition ID'
                     />
                 </div>
 
@@ -85,7 +86,7 @@ const AddEvent = () => {
                     <input 
                     value = {fee}
                     onChange = {(e) => setFee(e.target.value)}
-                    type="text" 
+                    type="number" 
                     className="form-control" 
                     placeholder='Enter Fee'
                     />
@@ -116,9 +117,9 @@ const AddEvent = () => {
 
         </form>
     </div>
-        <EventsList />
+        <CompetitionsList />
     </div>
   )
 }
 
-export default AddEvent
+export default AddCompetition

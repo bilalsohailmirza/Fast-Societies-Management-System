@@ -6,6 +6,7 @@ import { CompetitionsContext, EventsContext, SocietiesContext } from '../context
 
 import AddSociety from './AddSociety' 
 import AddEvent from './AddEvent'
+import AddCompetition from './AddCompetition'
 
 const DashboardOptions = () => {
 
@@ -17,6 +18,7 @@ const DashboardOptions = () => {
     //local states
     const [isSocieties, setIsSocieties] = useState(false)
     const [isEvents, setIsEvents] = useState(false)
+    const [isCompetitions, setIsCompetitions] = useState(false)
     // click handling functions
 
     const handleSocieties = async (e) => {
@@ -30,6 +32,7 @@ const DashboardOptions = () => {
                 setSocieties(results.data.data.societies)
                 setIsSocieties(true)
                 setIsEvents(false)
+                setIsCompetitions(false)
             })
             
         }
@@ -50,6 +53,7 @@ const DashboardOptions = () => {
                 setEvents(results.data.data.events)
                 setIsEvents(true)
                 setIsSocieties(false)
+                setIsCompetitions(false)
             })
             
         }
@@ -59,11 +63,31 @@ const DashboardOptions = () => {
         }
     }
     
+    const handleCompetitions = async (e) => {
+        e.preventDefault()
+        try {
+            axios.get(
+                "http://localhost:5000/api/v1/events/allcompetitions/competitions"    
+            )
+            .then((results) => {
+                
+                setCompetitions(results.data.data.competitions)
+                setIsCompetitions(true)
+                setIsEvents(false)
+                setIsSocieties(false)
+            })
+            
+        }
+        catch(err) {
+            console.log(err)
+
+        }
+    }
     return (
         <div className="py-3">
 
         <div className='d-flex justify-content-around'>
-            
+
         <button onClick={handleSocieties} type ='submit' className='mx-1 py-2 col-1 btn btn-primary'>
             Societies
         </button>
@@ -74,13 +98,16 @@ const DashboardOptions = () => {
             Events
         </button>
 
-        <button  type ='submit' className='mx-1 py-2 col-1 btn btn-primary'>Competitions</button>
+        <button onClick={handleCompetitions} type ='submit' className='mx-1 py-2 col-1 btn btn-primary'>
+            Competitions
+        </button>
         <button  type ='submit' className='mx-1 py-2 col-1 btn btn-primary'>Participants</button>
          
     </div>
 
         { isSocieties ? <AddSociety /> : <div className=""></div> }
         { isEvents? <AddEvent /> : <div className=""></div> }
+        { isCompetitions? <AddCompetition /> : <div className=""></div> }
 
         </div>
   )

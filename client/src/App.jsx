@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { SocietyContextProvider, EventContextProvider, CompetitionContextProvider } from './context/AllContexts';
 
 import MainNavbar from './components/MainNavbar';
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import AllSocieties from './pages/AllSocieties';
 import Society from './pages/Society';
@@ -24,6 +25,8 @@ const App = () => {
 
         
         <Routes>
+
+        <Route path="*" element={<NotFound/>} />
         <Route path="/" element={<Home/>} />
           <Route exact path="/societies" element={<AllSocieties/>} />
           <Route path="/societies/:societyId" element={<Society />} />

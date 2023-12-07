@@ -10,8 +10,29 @@ router.use(express.json())
 // Get All Competitions of an Event
 router.get("/:eId/competitions", async (req, res) => {
 
-    console.log(req.params.eId)
-    req.params.eId = decodeURI(req.params.eId)
+    if(req.params.eId === 'allcompetitions') {
+        try {
+        
+            // req.params.mId = req.params.mId.substring(0, 3) + '-' + req.params.mId.substring(3, req.params.mId.length);    
+            console.log(req.params.eId)
+            
+            const results = await db.query(
+                "SELECT * FROM \"Competition\" ",[]
+                );
+            // console.log(results);
+            
+            res.status(200).json({
+                status: "success",
+            results: results.rowCount,
+            data: {
+                competitions: results.rows,
+            },
+        });
+    
+    }   catch(err) {
+            console.log(err);
+        }
+    }
     
     try {
         
@@ -62,51 +83,51 @@ router.get("/:eId/competitions/:cId" , async (req, res) => {
 });
 
 // Create a Competition
-// router.post("/:sId/events/", async (req, res) => {
+router.post("/:eId/competitions/", async (req, res) => {
 
-//     try {
+    try {
 
-//         // console.log(req.body)
-//         const results = await db.query(
-//             "INSERT INTO \"Event\" (\"EventId\", \"EventName\", \"SocietyId\", \"EventFee\", \"EventDate\", \"EventLogo\", \"EventDescription\") VALUES ($1, $2, $3, $4, $5, $6, $7) returning *", 
-//             [req.body.eventId, req.body.eventName, req.params.sId, req.body.evetFee, req.body.eventDate, req.body.eventLogo, req.body.eventDesc,]
-//             );
+        // console.log(req.body)
+        const results = await db.query(
+            "INSERT INTO \"Competition\" (\"CompetitionId\", \"CompetitionName\", \"EventId\", \"CompetitionFee\", \"CompetitionDescription\") VALUES ($1, $2, $3, $4, $5) returning *", 
+            [req.body.competitionId, req.body.competitionName, req.params.eId, req.body.competitionFee, req.body.competitionDesc,]
+            );
 
-//             console.log(results)
-//         res.status(201).json(
-//             {
-//                 status: "success",
-//                 data: {
-//                     restaurant: results.rows[0],
-//                 },
-//             }
-//         );
-//     }   catch(err) {
-//             console.log(err);
-//         }
-// })
+            console.log(results)
+        res.status(201).json(
+            {
+                status: "success",
+                data: {
+                    competition: results.rows[0],
+                },
+            }
+        );
+    }   catch(err) {
+            console.log(err);
+        }
+})
 
-// // Delete a Competition
-// router.delete("/:sId/events/:eId", async (req, res) => {
+// Delete a Competition
+router.delete("/competitions/:cId", async (req, res) => {
 
-//     try {
+    try {
 
-//         const results = await db.query(
-//             "DELETE FROM \"Event\" WHERE \"EventId\" = $1",
-//             [req.params.eId]
-//         )
-//         res.status(204).json(
-//             {
-//                 status: "success"
-//             }
-//         )
-//         console.log("Deleted Successfully!")
+        const results = await db.query(
+            "DELETE FROM \"Competition\" WHERE \"CompetitionId\" = $1",
+            [req.params.cId]
+        )
+        res.status(204).json(
+            {
+                status: "success"
+            }
+        )
+        console.log("Deleted Successfully!")
 
-//     }   catch(err) {
+    }   catch(err) {
 
-//         console.log(err)
-//     }
-// })
+        console.log(err)
+    }
+})
 
 // // Update a Competition
 // router.put("/:sId/events/:eId", async (req, res) => {

@@ -44,13 +44,13 @@ export const CompetitionContextProvider = (props) => {
 
     const [competitions, setCompetitions] = useState([])
 
-    const viewCompetitions = (competition) => {
+    const addCompetitions = (competition) => {
         setCompetitions([...competitions, competition])
     }
     return (
 
         <CompetitionsContext.Provider value = {
-            {competitions, setCompetitions, viewCompetitions}
+            {competitions, setCompetitions, addCompetitions}
             }
         >
             {props.children}

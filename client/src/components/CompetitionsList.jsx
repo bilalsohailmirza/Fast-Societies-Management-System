@@ -4,17 +4,18 @@ import { useContext } from 'react'
 import { CompetitionsContext, EventsContext, SocietiesContext } from '../context/AllContexts'
 
 
-const EventsList = () => {
+const CompetitionsList = () => {
 
-    const {societies, setSocieties} = useContext(SocietiesContext)
+    // const {societies, setSocieties} = useContext(SocietiesContext)
     const {events, setEvents} = useContext (EventsContext)
-    // const {competitions, setCompetitions} = useContext(CompetitionsContext)
+    const {competitions, setCompetitions} = useContext(CompetitionsContext)
+
     // console.log("All COntext Events: ", events)
     const handleDelete = (id) => {
         try {
-            axios.delete(`http://localhost:5000/api/v1/societies/events/${id}`)
-            .then((response) => setEvents(events.filter(event => {
-                return event.id !== id
+            axios.delete(`http://localhost:5000/api/v1/events/competitions/${id}`)
+            .then((response) => setCompetitions(competitions.filter(competition => {
+                return competition.id !== id
             })))
 
         }catch(err) {
@@ -29,28 +30,28 @@ const EventsList = () => {
             <table className="table table-striped table-hover">
                 <thead className="table-dark">
                     <tr className="">
-                        <th scope="col">Event Id</th>
-                        <th scope="col">Event Name</th>
-                        <th scope="col">Event Description</th>
-                        <th scope="col">Event Fee</th>
+                        <th scope="col">Competition Id</th>
+                        <th scope="col">Competition Name</th>
+                        <th scope="col">Competition Description</th>
+                        <th scope="col">Competition Fee</th>
                         <th scope="col">Delete</th>
                         
                     </tr>
                 </thead>
 
                 <tbody className='table-info'>
-                    {events && events.map((event) => {
+                    {competitions && competitions.map((competition) => {
                         return (
 
-                        <tr key={event.EventId}>
-                            <td>{event.EventId}</td>
-                            <td>{event.EventName}</td>
-                            <td>{event.EventDescription}</td>
-                            <td>{event.EventFee}</td>
+                        <tr key={competition.CompetitionId}>
+                            <td>{competition.CompetitionId}</td>
+                            <td>{competition.CompetitionName}</td>
+                            <td>{competition.CompetitionDescription}</td>
+                            <td>{competition.CompetitionFee}</td>
                         
                             <td>
                                 <button
-                                    onClick = {() => {handleDelete(event.EventId)}}
+                                    onClick = {() => {handleDelete(competition.CompetitionId)}}
                                     className="btn btn-danger"
                                 >
                                     DELETE
@@ -68,4 +69,4 @@ const EventsList = () => {
   )
 }
 
-export default EventsList
+export default CompetitionsList
