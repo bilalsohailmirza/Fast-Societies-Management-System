@@ -290,3 +290,19 @@ Last Update from Owais:
 --     REFERENCES public."CompetitionParticipant" ("ParticipantId") MATCH SIMPLE
 --     ON DELETE CASCADE
 --     NOT VALID;
+
+CREATE OR REPLACE FUNCTION del_function() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO
+        "Log_Participant"("ParticipantId", "ParticipantName","ParticipantPhone", "ParticipantEmail")
+        VALUES(old."ParticipantId", old."ParticipantName", old."ParticipantPhone", old."ParticipantEmail");
+        RETURN old;
+END;
+$BODY$
+language plpgsql;
+
+CREATE TRIGGER del_trigger
+     BEFORE DELETE ON "CompetitionParticipant"
+     FOR EACH ROW
+     EXECUTE PROCEDURE del_function();
