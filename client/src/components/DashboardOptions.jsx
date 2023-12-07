@@ -1,13 +1,15 @@
 import axios from 'axios'
 
 import { useContext, useState } from 'react'
-import { CompetitionsContext, EventsContext, ParticipantsContext, SocietiesContext } from '../context/AllContexts'
+import { CompetitionsContext, EventsContext, LogsContext, ParticipantsContext, SocietiesContext } from '../context/AllContexts'
 
 
 import AddSociety from './AddSociety' 
 import AddEvent from './AddEvent'
 import AddCompetition from './AddCompetition'
 import ParticipantsList from './ParticipantsList'
+import LogsList from './LogsList'
+
 
 const DashboardOptions = () => {
 
@@ -17,11 +19,13 @@ const DashboardOptions = () => {
     const {events, setEvents} = useContext (EventsContext)
     const {competitions, setCompetitions} = useContext(CompetitionsContext)
     const {participants, setParticipants} = useContext(ParticipantsContext)
+    const {logs, setLogs} = useContext(LogsContext)
     //local states
     const [isSocieties, setIsSocieties] = useState(false)
     const [isEvents, setIsEvents] = useState(false)
     const [isCompetitions, setIsCompetitions] = useState(false)
     const [isParticipants, setIsParticipants] = useState(false)
+    const [isLogs, setIsLogs] = useState(false)
 
     // click handling functions
 
@@ -38,6 +42,7 @@ const DashboardOptions = () => {
                 setIsEvents(false)
                 setIsCompetitions(false)
                 setIsParticipants(false)
+                setIsLogs(false)
             })
             
         }
@@ -60,6 +65,7 @@ const DashboardOptions = () => {
                 setIsSocieties(false)
                 setIsCompetitions(false)
                 setIsParticipants(false)
+                setIsLogs(false)
             })
             
         }
@@ -82,6 +88,7 @@ const DashboardOptions = () => {
                 setIsEvents(false)
                 setIsSocieties(false)
                 setIsParticipants(false)
+                setIsLogs(false)
             })
             
         }
@@ -104,6 +111,31 @@ const DashboardOptions = () => {
                 setIsCompetitions(false)
                 setIsEvents(false)
                 setIsSocieties(false)
+                setIsLogs(false)
+            })
+            
+        }
+        catch(err) {
+            console.log(err)
+
+        }
+    }
+
+
+    const handleLogs = async (e) => {
+        e.preventDefault()
+        try {
+            axios.get(
+        "http://localhost:5000/api/v1/events/participant_logs"    
+            )
+            .then((results) => {
+                
+                setLogs(results.data.data.participantLogs)
+                setIsLogs(true)
+                setIsCompetitions(false)
+                setIsEvents(false)
+                setIsSocieties(false)
+                setIsParticipants(false)
             })
             
         }
@@ -132,13 +164,14 @@ const DashboardOptions = () => {
         </button>
         <button onClick={handleParticipants} type ='submit' className='mx-1 py-2 col-1 btn btn-primary'>Participants</button>
          
-        <button  type ='submit' className='mx-1 py-2 col-2 btn btn-primary'>Participant Logs</button>
+        <button onClick={handleLogs} type ='submit' className='mx-1 py-2 col-2 btn btn-primary'>Participant Logs</button>
     </div>
 
         { isSocieties ? <AddSociety /> : <div className=""></div> }
         { isEvents? <AddEvent /> : <div className=""></div> }
         { isCompetitions? <AddCompetition /> : <div className=""></div> }
         { isParticipants? <ParticipantsList /> : <div className=""></div> }
+        { isLogs? <LogsList /> : <div className=""></div> }
 
         </div>
   )

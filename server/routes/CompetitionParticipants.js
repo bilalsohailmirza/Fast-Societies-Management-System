@@ -162,7 +162,7 @@ router.get("/participant_logs/", async (req, res) => {
             {
                 status: "success",
                 data: {
-                    participants: result.rows,
+                    participantLogs: result.rows,
                 }
             }
         );

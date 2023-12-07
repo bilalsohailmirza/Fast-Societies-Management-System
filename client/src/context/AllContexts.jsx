@@ -4,6 +4,7 @@ export const SocietiesContext = createContext();
 export const EventsContext = createContext();
 export const CompetitionsContext = createContext();
 export const ParticipantsContext = createContext();
+export const LogsContext = createContext();
 
 export const SocietyContextProvider = (props) => {
 
@@ -77,3 +78,21 @@ export const ParticipantContextProvider = (props) => {
     )
 }
 
+
+export const LogsContextProvider = (props) => {
+
+    const [logs, setLogs] = useState([])
+
+    const addLogs = (log) => {
+        setLogs([...logs, log])
+    }
+    return (
+
+        <LogsContext.Provider value = {
+            {logs, setLogs, addLogs}
+            }
+        >
+            {props.children}
+        </LogsContext.Provider>
+    )
+}

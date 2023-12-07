@@ -1,7 +1,7 @@
 // import { React } from 'react'
 import {BrowserRouter, Routes, Route, } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SocietyContextProvider, EventContextProvider, CompetitionContextProvider, ParticipantContextProvider } from './context/AllContexts';
+import { SocietyContextProvider, EventContextProvider, CompetitionContextProvider, ParticipantContextProvider, LogsContextProvider } from './context/AllContexts';
 
 import MainNavbar from './components/MainNavbar';
 import NotFound from './pages/NotFound';
@@ -23,6 +23,7 @@ const App = () => {
       <EventContextProvider>
       <CompetitionContextProvider>
       <ParticipantContextProvider>
+      <LogsContextProvider>
 
         
         <Routes>
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/admin" element={<Dashboard/>} />
         </Routes>
 
+      </LogsContextProvider>
       </ParticipantContextProvider>
       </CompetitionContextProvider>
       </EventContextProvider>
