@@ -19,7 +19,7 @@ const MainNavbar = () => {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/societies">Societies</Nav.Link>
 
-            <NavDropdown title="" id="basic-nav-dropdown">
+            {/* <NavDropdown title="" id="basic-nav-dropdown">
               <NavDropdown.Item className="drop-link bg-info" href="#action/3.1">
               Procom
               </NavDropdown.Item>
@@ -27,12 +27,12 @@ const MainNavbar = () => {
               <NavDropdown.Item className="drop-link bg-info" href="/societies/Acm">ACM</NavDropdown.Item>
               <NavDropdown.Item className="drop-link bg-info" href="/societies/Fdss">FDSS</NavDropdown.Item>
               <NavDropdown.Item className="drop-link bg-info" href="/societies/Cbs">CBS</NavDropdown.Item>
-              <NavDropdown.Item className="drop-link bg-info" href="/societies/Decs">DECS</NavDropdown.Item>
+              <NavDropdown.Item className="drop-link bg-info" href="/societies/Decs">DECS</NavDropdown.Item> */}
               {/* <NavDropdown.Divider /> */}
               {/* <NavDropdown.Item className="drop-link bg-info" href="#action/3.4">
                 Separated link
               </NavDropdown.Item> */}
-            </NavDropdown>
+            {/* </NavDropdown> */}
 
           </Nav>
         </Navbar.Collapse>
