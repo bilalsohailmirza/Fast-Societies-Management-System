@@ -1,0 +1,13 @@
+EventId,EventName,SocietyId,EventFee,EventDate,EventLogo,EventDescription
+Procom-01,Procom,Procom,,2023-11-23,,
+Acm-01,CodersCup,Acm,,2023-05-02,,
+Acm-02,Dev Day,Acm,,2023-01-25,,
+Decs-01,BeachPary,Decs,,2023-04-11,,
+Decs-02,Spotlight,Decs,,2023-11-08,,
+Tlc-01,AHA Declamation,Tlc,,2023-05-11,,
+Tlc-02,The Grand Debate,Tlc,,2023-11-14,,
+Cbs-01,YouthClub Session,Cbs,,2023-05-30,,
+Cbs-02,Orphans Day Out,Cbs,,2023-08-23,,
+Fdss-01,DataQuest,Fdss,,2023-04-09,,
+Fdss-02,DataVerse,Fdss,,2023-04-07,,
+Mlsa-01,Building Cloud Native Apps,Mlsa,,2023-06-09,,

@@ -1,0 +1,43 @@
+TeamId,SocietyId,TeamName
+Procom_PR,Procom,Participant Relations
+Procom_Content,Procom,Content
+Procom_Marketing,Procom,Marketing
+Procom_Promotion,Procom,Promotion
+Procom_EM,Procom,Event Management
+Procom_GR,Procom,Guest Relations
+Acm_PR,Acm,Participant Relations
+Acm_Content,Acm,Content
+Acm_Marketing,Acm,Marketing
+Acm_Promotion,Acm,Promotion
+Acm_EM,Acm,Event Management
+Acm_GR,Acm,Guest Relations
+Decs_PR,Decs,Participant Relations
+Decs_Content,Decs,Content
+Decs_Marketing,Decs,Marketing
+Decs_Promotion,Decs,Promotion
+Decs_EM,Decs,Event Management
+Decs_GR,Decs,Guest Relations
+Tlc_PR,Tlc,Participant Relations
+Tlc_Content,Tlc,Content
+Tlc_Marketing,Tlc,Marketing
+Tlc_Promotion,Tlc,Promotion
+Tlc_EM,Tlc,Event Management
+Tlc_GR,Tlc,Guest Relations
+Cbs_PR,Cbs,Participant Relations
+Cbs_Content,Cbs,Content
+Cbs_Marketing,Cbs,Marketing
+Cbs_Promotion,Cbs,Promotion
+Cbs_EM,Cbs,Event Management
+Cbs_GR,Cbs,Guest Relations
+Fdss_PR,Fdss,Participant Relations
+Fdss_Content,Fdss,Content
+Fdss_Marketing,Fdss,Marketing
+Fdss_Promotion,Fdss,Promotion
+Fdss_EM,Fdss,Event Management
+Fdss_GR,Fdss,Guest Relations
+Mlsa_PR,Mlsa,Participant Relations
+Mlsa_Content,Mlsa,Content
+Mlsa_Marketing,Mlsa,Marketing
+Mlsa_Promotion,Mlsa,Promotion
+Mlsa_EM,Mlsa,Event Management
+Mlsa_GR,Mlsa,Guest Relations
